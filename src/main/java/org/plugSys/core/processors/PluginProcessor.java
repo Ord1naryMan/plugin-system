@@ -4,6 +4,6 @@ public class PluginProcessor implements BaseProcessor{
     @Override
     public void process() {
         //TODO: add plugin processor
-//        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException();
     }
 }
