@@ -2,14 +2,13 @@ package org.plugSys.core.processors;
 
 import org.plugSys.core.commands.handlers.BaseCommand;
 import org.plugSys.core.commands.handlers.annotation.Command;
+import org.plugSys.core.coreEventHandlers.CoreHandlersInit;
 import org.plugSys.utils.ReflectionUtils;
 
 import java.lang.reflect.Constructor;
 import java.util.List;
 
 public class RegistrationProcessor implements BaseProcessor{
-
-    private RegistrationProcessor() {}
 
     @Override
     public void process() {
@@ -24,6 +23,9 @@ public class RegistrationProcessor implements BaseProcessor{
                 CommandProcessor.addCommand(commandName, getInstance(clazz));
             }
         }
+
+        //add core handlers, do it here 'cause we want them to run before plugin handlers
+        CoreHandlersInit.init();
     }
 
     private BaseCommand getInstance(Class<BaseCommand> clazz) {
